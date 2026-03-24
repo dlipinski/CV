@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dawid Lipiński — Full Stack Developer</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --blue: #2563eb;
+            --dark: #0f172a;
+            --body: #334155;
+            --muted: #64748b;
+            --rule: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            body {
+                background: #fff !important;
+                padding: 0 !important;
+                display: block !important;
+            }
+
+            #print-btn {
+                display: none !important;
+            }
+
+            body * {
+                visibility: hidden;
+            }
+
+            #print,
+            #print * {
+                visibility: visible;
+            }
+
+            #print {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 210mm;
+                min-height: 297mm;
+                box-shadow: none !important;
+            }
+        }
+
+        /* Section headers */
+        .sec-head {
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--blue);
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 10px;
+        }
+
+        /* Timeline */
+        .tl {
+            position: relative;
+            padding-left: 12px;
+            border-left: 2px solid var(--rule);
+            margin-bottom: 10px;
+        }
+
+        .tl:last-child {
+            margin-bottom: 0;
+        }
+
+        .tl::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue);
+        }
+
+        .job-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+
+        .job-date {
+            font-size: 0.65rem;
+            color: var(--muted);
+            font-weight: 400;
+            white-space: nowrap;
+            margin-left: 6px;
+        }
+
+        .job-company {
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: var(--blue);
+        }
+
+        .job-loc {
+            font-size: 0.64rem;
+            color: var(--muted);
+        }
+
+        .job-stack {
+            font-size: 0.67rem;
+            font-style: italic;
+            color: var(--muted);
+            margin: 2px 0 4px;
+        }
+
+        .bullets {
+            padding-left: 10px;
+            list-style: disc;
+        }
+
+        .bullets li {
+            font-size: 0.71rem;
+            color: var(--body);
+            line-height: 1.55;
+            margin-bottom: 2px;
+        }
+
+        .bullets li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Skills */
+        .skill-cat {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin: 7px 0 4px;
+        }
+
+        .skill-cat:first-child {
+            margin-top: 0;
+        }
+
+        .pill {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 500;
+            padding: 2px 7px;
+            border: 1px solid #cbd5e1;
+            border-radius: 3px;
+            color: var(--dark);
+            background: #fff;
+            margin: 2px 2px 2px 0;
+        }
+
+        /* Interests */
+        .interest {
+            font-size: 0.62rem;
+            font-weight: 500;
+            color: var(--body);
+            padding: 4px 0 4px 10px;
+            border-left: 2px solid var(--rule);
+            margin-bottom: 4px;
+        }
+
+        .interest:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Contact */
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 0;
+        }
+
+        .contact-item {
+            font-size: 0.57rem;
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        .contact-sep {
+            font-size: 0.57rem;
+            color: var(--rule);
+            margin: 0 8px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-slate-100 p-6 flex flex-col items-center print:block print:bg-white print:p-0">
+
+    <button id="print-btn" onclick="window.print()"
+        style="margin-bottom: 16px; background: #fff; color: #334155; border: 1px solid #cbd5e1; padding: 7px 20px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 4px;">
+        Print / Save PDF
+    </button>
+
+    <div id="print"
+        style="width: 210mm; min-height: 297mm; padding: 1.3cm 1.3cm 1.7cm 1.6cm;  background: #fff; box-shadow: 0 4px 24px rgba(15,23,42,0.10); display: flex; flex-direction: column; overflow: hidden;">
+
+        <!-- ── HEADER ────────────────────────────── -->
+        <div style="  display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+
+            <div style="flex: 1; min-width: 0;">
+                <h1
+                    style="font-size: 2.2rem; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; line-height: 1;">
+                    Dawid Lipiński
+                </h1>
+                <p
+                    style="font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin: 6px 0 12px;">
+                    Full Stack Developer
+                </p>
+
+                <div class="contact-row">
+                    <span class="contact-item">+48 795 072 165</span>
+                    <span class="contact-sep">·</span>
+                    <span class="contact-item">dawid.lipinski3@gmail.com</span>
+                    <span class="contact-sep">·</span>
+                    <span class="contact-item">linkedin.com/in/dawid-lipinski-developer/</span>
+                    <span class="contact-sep">·</span>
+                    <span class="contact-item">Gdynia</span>
+                </div>
+            </div>
+
+            <!-- Photo -->
+            <div
+                style="width: 7rem; height: 7rem; border-radius: 50%; border: 2px solid var(--rule); overflow: hidden; flex-shrink: 0; background: #f1f5f9; display: flex; align-items: center; justify-content: center;">
+                <img src="photo.png" alt="Dawid Lipiński" style="width: 100%; height: 100%; object-fit: cover;"
+                    onerror="this.parentElement.querySelector('span').style.display='flex'; this.style.display='none'">
+                <span
+                    style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:0.42rem; font-weight:700; letter-spacing:0.1em; color:#94a3b8; text-align:center;">PHOTO</span>
+            </div>
+        </div>
+
+        <!-- ── BODY ──────────────────────────────── -->
+        <div style="display: flex; flex: 1; gap: 22px; padding-top: 2rem;">
+
+            <!-- LEFT COLUMN (62%) -->
+            <div style="flex: 0 0 62%; min-width: 0;">
+
+                <!-- EXPERIENCE -->
+                <div style="margin-bottom: 14px;">
+                    <div class="sec-head">Experience</div>
+
+                    <!-- Allegro -->
+                    <div class="tl">
+                        <div style="display:flex; align-items:baseline; justify-content:space-between;">
+                            <span class="job-title">FullStack Developer</span>
+                            <span class="job-date">01/2022 — 01/2025</span>
+                        </div>
+                        <div style="display:flex; align-items:center; justify-content:space-between; margin:2px 0 3px;">
+                            <span class="job-company">Allegro</span>
+                            <span class="job-loc">Remote</span>
+                        </div>
+                        <p class="job-stack">React + Java / Kotlin</p>
+                        <ul class="bullets">
+                            <li>Member of a 7-person team focused on collaboration and expanding a common level of
+                                domain knowledge.</li>
+                            <li>Creating and developing React micro front-ends within a single-spa architecture.</li>
+                            <li>Developing and maintaining Java / Kotlin microservices used in the client's solution.
+                            </li>
+                            <li>Testing on various test environments followed by complex deployment to production.</li>
+                            <li>Leading business and technical tasks.</li>
+                            <li>Maintaining the team's help channel, providing answers and solutions to questions from
+                                customers, business or other teams.</li>
+                            <li>Conducting SCRUM meetings, presenting the team's achievements on demos.</li>
+                        </ul>
+                    </div>
+
+                    <!-- SDA -->
+                    <div class="tl">
+                        <div style="display:flex; align-items:baseline; justify-content:space-between;">
+                            <span class="job-title">Software Development Trainer</span>
+                            <span class="job-date">12/2019 — 04/2022</span>
+                        </div>
+                        <div style="display:flex; align-items:center; justify-content:space-between; margin:2px 0 3px;">
+                            <span class="job-company">Software Development Academy</span>
+                            <span class="job-loc">Gdańsk, Poland</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Over 60 hours of teaching web development basics for 28 adult students.</li>
+                        </ul>
+                    </div>
+
+                    <!-- AREX -->
+                    <div class="tl">
+                        <div style="display:flex; align-items:baseline; justify-content:space-between;">
+                            <span class="job-title">FullStack Developer</span>
+                            <span class="job-date">04/2019 — 08/2021</span>
+                        </div>
+                        <div style="display:flex; align-items:center; justify-content:space-between; margin:2px 0 3px;">
+                            <span class="job-company">AREX Sp. z o.o.</span>
+                            <span class="job-loc">Gdynia, Poland</span>
+                        </div>
+                        <p class="job-stack">Ruby on Rails + React</p>
+                        <ul class="bullets">
+                            <li>Maintained and developed a web application for a major Polish railroad company,
+                                connected to thousands of track heating devices across hundreds of stations; enabled
+                                data visualization, validation, and editing.</li>
+                            <li>Designed and implemented a React frontend for a bus charging station management app,
+                                supporting charts, maps, large data editing, and a specialized display mode for harsh
+                                environments with on-screen keyboard.</li>
+                            <li>Built a front-end app integrated with GitLab API to standardize and secure configuration
+                                file editing, significantly speeding up and safeguarding workflows.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Atena -->
+                    <div class="tl">
+                        <div style="display:flex; align-items:baseline; justify-content:space-between;">
+                            <span class="job-title">Junior Developer</span>
+                            <span class="job-date">07/2017 — 04/2019</span>
+                        </div>
+                        <div style="display:flex; align-items:center; justify-content:space-between; margin:2px 0 3px;">
+                            <span class="job-company">Atena Usługi Informatyczne i Finansowe S.A.</span>
+                            <span class="job-loc">Sopot, Poland</span>
+                        </div>
+                        <p class="job-stack">C# + VBA</p>
+                    </div>
+                </div>
+
+                <!-- EDUCATION -->
+                <div>
+                    <div class="sec-head">Education</div>
+                    <div class="tl">
+                        <div style="display:flex; align-items:baseline; justify-content:space-between;">
+                            <span class="job-title">Bachelor's degree, Computer Science</span>
+                            <span class="job-date">01/2015 — 12/2019</span>
+                        </div>
+                        <p style="font-size:0.6rem; color:var(--dark); font-weight:500; margin:2px 0 2px;">
+                            Specialization in Web Applications and Databases</p>
+                        <div style="margin-bottom:4px;">
+                            <span class="job-company">Uniwersytet Gdański</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Ranked in the top 10% in the second year.</li>
+                            <li>Started work in the field after the second year of studies.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- /left -->
+
+            <!-- RIGHT COLUMN (38%) -->
+            <div style="flex: 0 0 35%; min-width: 0;">
+
+                <!-- SUMMARY -->
+                <div style="margin-bottom: 14px;">
+                    <div class="sec-head">Summary</div>
+                    <p style="font-size:0.7rem; color:var(--body); line-height:1.65;">
+                        Experienced full-stack developer (5 years) with expertise in React and Java microservices,
+                        end-to-end approach, and SCRUM leadership; focused on building scalable, optimized,
+                        and user-focused solutions.
+                    </p>
+                </div>
+
+                <!-- SKILLS -->
+                <div style="margin-bottom: 14px;">
+                    <div class="sec-head">Skills</div>
+
+                    <div class="skill-cat">Frontend</div>
+                    <div>
+                        <span class="pill">React</span>
+                        <span class="pill">TypeScript</span>
+                        <span class="pill">JavaScript</span>
+                        <span class="pill">Jest</span>
+                        <span class="pill">Mocking</span>
+                        <span class="pill">Storybook</span>
+                        <span class="pill">Microfrontends</span>
+                        <span class="pill">Single-SPA</span>
+                    </div>
+
+                    <div class="skill-cat">Backend</div>
+                    <div>
+                        <span class="pill">Java</span>
+                        <span class="pill">Kotlin</span>
+                        <span class="pill">Groovy</span>
+                        <span class="pill">Mongo</span>
+                        <span class="pill">Microservices</span>
+                    </div>
+
+                    <div class="skill-cat">DevOps</div>
+                    <div>
+                        <span class="pill">Kubernetes</span>
+                        <span class="pill">Docker</span>
+                        <span class="pill">Linux</span>
+                    </div>
+                </div>
+
+                <!-- INTERESTS -->
+                <div>
+                    <div class="sec-head">Interests</div>
+                    <div class="interest">Speculative &amp; contemporary fiction</div>
+                    <div class="interest">Healthy Lifestyle &amp; Gym</div>
+                    <div class="interest">Travel &amp; cultural exploration</div>
+                </div>
+
+            </div><!-- /right -->
+
+        </div><!-- /body -->
+
+    </div><!-- /print -->
+
+</body>
+
+</html>
