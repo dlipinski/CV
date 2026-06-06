@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dawid Lipiński — Full Stack Developer</title>
+    <title>Dawid Lipiński - Frontend & FullStack Developer</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,7 +82,6 @@
         .tl {
             position: relative;
             padding-left: 12px;
-            border-left: 2px solid var(--rule);
             margin-bottom: 15px;
         }
 
@@ -90,18 +89,32 @@
             margin-bottom: 0;
         }
 
+        /* timeline rail */
         .tl::before {
-            content: ' ';
+            content: '';
             position: absolute;
-            left: -4px;
-            top: 0px;
+            left: 0;
+            top: 4px;
+            bottom: 0;
+            width: 2px;
+            background: var(--rule);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* timeline node */
+        .tl::after {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: 4px;
             width: 6px;
             height: 6px;
             border-radius: 50%;
             background: var(--blue);
+            box-shadow: 0 0 0 2px #fff;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
-
         }
 
         .job-title {
@@ -244,7 +257,7 @@
                     <span class="contact-sep">·</span>
                     <span class="contact-item">Gdańsk</span>
                     <span class="contact-sep">·</span>
-                    <span class="contact-item">linkedin.com/in/dawid-lipiński-310b5b411</span>
+                    <span class="contact-item">linkedin.com/in/dawid-lipinski-work</span>
                 </div>
             </div>
 
@@ -437,6 +450,7 @@
                         <span class="pill">Kotlin</span>
                         <span class="pill">Spring</span>
                         <span class="pill">Node</span>
+                        <span class="pill">Next.js</span>
                         <span class="pill">SQL</span>
                         <span class="pill">Docker</span>
                         <span class="pill">Kubernetes</span>
